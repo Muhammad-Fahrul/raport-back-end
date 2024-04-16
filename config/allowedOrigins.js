@@ -1,1 +1,1 @@
-export default ['https://muhammad-fahrul.github.io/eraport/'];
+export default ['https://muhammad-fahrul.github.io'];
