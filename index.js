@@ -24,6 +24,14 @@ app.use(cors(corsOption));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use('/', express.static(path.join(__dirname, 'public')));
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/students', studentRoutes);
+app.use('/api/raports', raportRoutes);
+
 app.all('*', (req, res) => {
   res.status(404);
   if (req.accepts('html')) {
@@ -34,12 +42,6 @@ app.all('*', (req, res) => {
     res.type('txt').send('404 Not Found');
   }
 });
-
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/students', studentRoutes);
-app.use('/api/raports', raportRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
