@@ -1,1 +1,1 @@
-export default ['http://localhost:5173'];
+export default ['https://muhammad-fahrul.github.io/eraport/'];
