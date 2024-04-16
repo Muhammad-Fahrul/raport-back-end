@@ -4,8 +4,8 @@
   "type": "module",
   "description": "",
   "scripts": {
-    "start": "node ./backend/index.js",
-    "server": "nodemon ./backend/index.js"
+    "start": "node ./index.js",
+    "server": "nodemon ./index.js"
   },
   "keywords": [],
   "author": "",
