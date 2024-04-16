@@ -15,6 +15,6 @@ router.post(
   verifyJWT,
   updateProfilePhoto
 );
-// router.put('/', verifyJWT, updateUser);
+router.put('/', verifyJWT, updateUser);
 
 export default router;
