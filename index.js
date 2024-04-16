@@ -24,9 +24,6 @@ app.use(cors(corsOption));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const __dirname = path.resolve();
-app.use('/', express.static(path.join(__dirname, 'public')));
-
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -34,6 +31,7 @@ app.use('/api/students', studentRoutes);
 app.use('/api/raports', raportRoutes);
 
 app.all('*', (req, res) => {
+  const __dirname = path.resolve();
   res.status(404);
   if (req.accepts('html')) {
     res.sendFile(path.join(__dirname, 'views', '404.html'));
