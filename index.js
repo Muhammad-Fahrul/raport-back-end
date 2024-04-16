@@ -16,7 +16,6 @@ import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 const PORT = 5000;
 
 // Connect to MongoDB
-connectDB();
 
 const app = express();
 app.use(cookieParser());
@@ -33,4 +32,6 @@ app.use('/api/raports', raportRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+connectDB().then(() => {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});
