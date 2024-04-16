@@ -24,6 +24,7 @@ app.use(cors(corsOption));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const __dirname = path.resolve();
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 // Routes
