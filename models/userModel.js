@@ -17,11 +17,6 @@ const UserSchema = new mongoose.Schema({
     enum: ['mentor', 'student'],
     required: true,
   },
-  grade: {
-    type: Number,
-    default: 1,
-    min: 1,
-  },
   mentorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -52,7 +47,7 @@ UserSchema.pre('save', async function (next) {
     const studentCount = await mongoose.models.User.countDocuments({
       mentorId: this.mentorId,
     });
-    if (studentCount >= 3) {
+    if (studentCount >= 40) {
       const err = new Error(
         'Batas jumlah item dalam koleksi Student telah tercapai'
       );

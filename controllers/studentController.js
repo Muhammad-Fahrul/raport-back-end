@@ -7,7 +7,7 @@ import UserValidator from '../validator/user/index.js';
 const createNewStudent = asyncHandler(async (req, res) => {
   const { username, password, grade } = req.body;
 
-  UserValidator.validateUserPayload({ username, password, grade });
+  UserValidator.validateUserPayload({ username, password });
 
   if (!req.user) {
     return res.status(401).json({ message: 'Unauthorized' });
@@ -22,7 +22,6 @@ const createNewStudent = asyncHandler(async (req, res) => {
   student = new User({
     username,
     password,
-    grade,
     role: 'student',
     mentorId: req.userId,
   });

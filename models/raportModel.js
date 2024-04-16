@@ -34,7 +34,7 @@ raportSchema.pre('save', async function (next) {
   const raportCount = await mongoose.models.Raport.countDocuments({
     studentId: this.studentId,
   });
-  if (raportCount >= 10) {
+  if (raportCount >= 365) {
     const err = new Error(
       'Batas jumlah item dalam koleksi Raport telah tercapai'
     );

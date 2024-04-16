@@ -3,7 +3,6 @@ import Joi from 'joi';
 export const UserPayloadSchema = Joi.object({
   username: Joi.string().required(),
   password: Joi.string().required(),
-  grade: Joi.number().required(),
 });
 
 export const AuthPayloadSchema = Joi.object({
