@@ -1,3 +1,4 @@
+import InvariantError from '../../error/InvariantError.js';
 import {
   AuthPayloadSchema,
   UserPayloadSchema,
@@ -8,7 +9,7 @@ export default {
   validateUserPayload: (payload) => {
     const validationResult = UserPayloadSchema.validate(payload);
     if (validationResult.error) {
-      throw new Error(validationResult.error.message);
+      throw new InvariantError(validationResult.error.message);
     }
   },
   validateAuthPayload: (payload) => {
@@ -20,7 +21,7 @@ export default {
   validateUserUpdatePayload: (payload) => {
     const validationResult = UserUpdatePayloadSchema.validate(payload);
     if (validationResult.error) {
-      throw new Error(validationResult.error.message);
+      throw new InvariantError(validationResult.error.message);
     }
   },
 };

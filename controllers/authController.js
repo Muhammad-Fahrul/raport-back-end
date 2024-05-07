@@ -13,13 +13,13 @@ const login = asyncHandler(async (req, res) => {
   let foundUser = await User.findOne({ username });
 
   if (!foundUser) {
-    return res.status(400).json({ message: 'Invalid credentials' });
+    return res.status(401).json({ message: 'Invalid Username' });
   }
 
   const isMatch = await bcrypt.compare(password, foundUser.password);
 
   if (!isMatch) {
-    return res.status(400).json({ message: 'Invalid credentials' });
+    return res.status(401).json({ message: 'Invalid Password' });
   }
 
   const accessToken = jwt.sign(
@@ -48,7 +48,7 @@ const login = asyncHandler(async (req, res) => {
     maxAge: 7 * 24 * 60 * 60 * 1000, //cookie expiry: set to match rT
   });
 
-  res.json({ data: { accessToken } });
+  res.status(201).json({ data: { accessToken } });
 });
 
 const refresh = (req, res) => {

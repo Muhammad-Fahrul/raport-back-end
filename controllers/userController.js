@@ -13,6 +13,7 @@ import {
 import firebaseConfig from '../config/firebase.js';
 
 import UserValidator from '../validator/user/index.js';
+import InvariantError from '../error/InvariantError.js';
 
 initializeApp(firebaseConfig);
 
@@ -32,31 +33,32 @@ const createNewUser = asyncHandler(async (req, res) => {
   user = new User({
     username,
     password,
-    role: 'mentor',
   });
+
+  if (role) {
+    user.role = 'mentor';
+  }
 
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(password, salt);
 
   await user.save();
 
-  if (user) {
-    res.status(201).json({ message: `New user ${username} created` });
-  } else {
-    res.status(400).json({ message: 'Invalid user data received' });
-  }
+  res.status(201).json({ message: `New user ${username} created` });
 });
 
 const getUser = asyncHandler(async (req, res) => {
-  const username = req.params.username;
-
-  const user = await User.findOne({ username }).select('-password');
+  const user = await User.findOne({ username: req.params.username }).select(
+    '-password'
+  );
 
   if (!user) {
-    return res.status(400).json({ message: 'User is not found' });
+    throw new InvariantError('User is not found');
   }
 
-  res.json({ ...user._doc });
+  const { username, phone, role, urlImgProfile } = user;
+
+  res.json({ username, phone, role, urlImgProfile });
 });
 
 const updateUser = asyncHandler(async (req, res) => {

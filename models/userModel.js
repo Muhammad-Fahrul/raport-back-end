@@ -5,17 +5,15 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  phone: {
-    type: String,
-  },
   password: {
     type: String,
     required: true,
   },
+  phone: {
+    type: String,
+  },
   role: {
     type: String,
-    enum: ['mentor', 'student'],
-    required: true,
   },
   mentorId: {
     type: mongoose.Schema.Types.ObjectId,
