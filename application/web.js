@@ -10,10 +10,11 @@ import authRoutes from '../routes/authRoutes.js';
 import userRoutes from '../routes/userRoutes.js';
 import studentRoutes from '../routes/studentRoutes.js';
 import raportRoutes from '../routes/raportRoutes.js';
+import raportBuilderRoutes from '../routes/raportBuilderRoutes.js';
 
 import { errorHandler, notFound } from '../middleware/errorMiddleware.js';
 
-export default app = express();
+const app = express();
 app.use(cookieParser());
 app.use(cors(corsOption));
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/raports', raportRoutes);
+app.use('/api/raportBuilder', raportBuilderRoutes);
 
 app.all('*', (req, res) => {
   const __dirname = path.resolve();
@@ -39,3 +41,5 @@ app.all('*', (req, res) => {
 
 app.use(notFound);
 app.use(errorHandler);
+
+export default app;
