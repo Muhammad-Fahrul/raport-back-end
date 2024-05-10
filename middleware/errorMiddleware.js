@@ -7,19 +7,10 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-  if (!err) {
-    next();
-    return;
-  }
-
-  let statusCode;
-  let message;
-
-  statusCode = err.statusCode === 200 ? 500 : err.statusCode;
-  message = err.message || 'Internal Server Error';
+  let statusCode = err.statusCode ? err.statusCode : 500;
 
   res.status(statusCode).json({
-    message: message,
+    message: err.message,
     stack: process.env.NODE_ENV === 'production' ? null : err.stack,
   });
 };
