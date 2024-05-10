@@ -56,9 +56,10 @@ const getUser = asyncHandler(async (req, res) => {
     throw new InvariantError('User is not found');
   }
 
-  const { username, phone, role, urlImgProfile } = user;
+  const { _id, username, phone, role, urlImgProfile, poin, success, fail } =
+    user;
 
-  res.json({ username, phone, role, urlImgProfile });
+  res.json({ _id, username, phone, role, urlImgProfile, poin, success, fail });
 });
 
 const updateUser = asyncHandler(async (req, res) => {

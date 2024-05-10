@@ -67,8 +67,7 @@ const deleteStudentById = asyncHandler(async (req, res) => {
   }
 
   if (student.mentorId.toString() !== mentorId) {
-    console.log('not okay');
-    return res.status(400).json({ message: 'Forbidden' });
+    return res.status(403).json({ message: 'Forbidden' });
   }
 
   const result = await student.deleteOne();
