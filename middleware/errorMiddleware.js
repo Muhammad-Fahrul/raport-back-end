@@ -15,13 +15,8 @@ const errorHandler = (err, req, res, next) => {
   let statusCode;
   let message;
 
-  if (err instanceof ClientError) {
-    statusCode = err.statusCode;
-    message = err.message;
-  } else {
-    statusCode = err.statusCode === 200 ? 500 : err.statusCode;
-    message = err.message || 'Internal Server Error';
-  }
+  statusCode = err.statusCode === 200 ? 500 : err.statusCode;
+  message = err.message || 'Internal Server Error';
 
   res.status(statusCode).json({
     message: message,
