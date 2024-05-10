@@ -10,7 +10,7 @@ import authRoutes from '../routes/authRoutes.js';
 import userRoutes from '../routes/userRoutes.js';
 import studentRoutes from '../routes/studentRoutes.js';
 import raportRoutes from '../routes/raportRoutes.js';
-import raportBuilderRoutes from '../routes/raportBuilderRoutes.js';
+// import raportBuilderRoutes from '../routes/raportBuilderRoutes.js';
 
 import { errorHandler, notFound } from '../middleware/errorMiddleware.js';
 
@@ -25,7 +25,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/raports', raportRoutes);
-app.use('/api/raportBuilder', raportBuilderRoutes);
+// app.use('/api/raportBuilder', raportBuilderRoutes);
 
 app.all('*', (req, res) => {
   const __dirname = path.resolve();
